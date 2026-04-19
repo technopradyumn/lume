@@ -1,0 +1,169 @@
+﻿
+  error - The named parameter 'userRepository' isn't defined - lib\main.dart:71:13 - undefined_named_parameter
+  error - The named parameter 'subscriptionRepository' isn't defined - lib\main.dart:89:13 - undefined_named_parameter
+  error - Target of URI doesn't exist: '../../../core/utils/error_handler.dart' - 
+lib\presentation\blocs\auth\auth_cubit.dart:4:8 - uri_does_not_exist
+  error - The method 'getCurrentUser' isn't defined for the type 'AuthRepository' - 
+lib\presentation\blocs\auth\auth_cubit.dart:17:36 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'AuthCubit' - 
+lib\presentation\blocs\auth\auth_cubit.dart:33:22 - undefined_method
+  error - The named parameter 'oldPassword' is required, but there's no corresponding argument - 
+lib\presentation\blocs\auth\auth_cubit.dart:39:23 - missing_required_argument
+  error - The named parameter 'currentPassword' isn't defined - lib\presentation\blocs\auth\auth_cubit.dart:40:9 - 
+undefined_named_parameter
+  error - The method 'extractErrorMessage' isn't defined for the type 'AuthCubit' - 
+lib\presentation\blocs\auth\auth_cubit.dart:44:22 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'AuthCubit' - 
+lib\presentation\blocs\auth\auth_cubit.dart:72:22 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'AuthCubit' - 
+lib\presentation\blocs\auth\auth_cubit.dart:82:22 - undefined_method
+  error - Target of URI doesn't exist: '../../../core/utils/error_handler.dart' - 
+lib\presentation\blocs\comment\comment_cubit.dart:7:8 - uri_does_not_exist
+  error - The method 'extractErrorMessage' isn't defined for the type 'CommentCubit' - 
+lib\presentation\blocs\comment\comment_cubit.dart:39:25 - undefined_method
+  error - The named parameter 'content' is required, but there's no corresponding argument - 
+lib\presentation\blocs\comment\comment_cubit.dart:45:26 - missing_required_argument
+  error - The named parameter 'videoId' is required, but there's no corresponding argument - 
+lib\presentation\blocs\comment\comment_cubit.dart:45:26 - missing_required_argument
+  error - Too many positional arguments: 0 expected, but 2 found - 
+lib\presentation\blocs\comment\comment_cubit.dart:45:37 - extra_positional_arguments_could_be_named
+  error - The method 'extractErrorMessage' isn't defined for the type 'CommentCubit' - 
+lib\presentation\blocs\comment\comment_cubit.dart:48:25 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'CommentCubit' - 
+lib\presentation\blocs\comment\comment_cubit.dart:57:25 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'CommentCubit' - 
+lib\presentation\blocs\comment\comment_cubit.dart:66:25 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'CommentCubit' - 
+lib\presentation\blocs\comment\comment_cubit.dart:74:25 - undefined_method
+  error - Target of URI doesn't exist: '../../../core/utils/error_handler.dart' - 
+lib\presentation\blocs\dashboard\dashboard_cubit.dart:7:8 - uri_does_not_exist
+  error - Undefined class 'DashboardModel' - lib\presentation\blocs\dashboard\dashboard_cubit.dart:14:9 - 
+undefined_class
+  error - The method 'extractErrorMessage' isn't defined for the type 'DashboardCubit' - 
+lib\presentation\blocs\dashboard\dashboard_cubit.dart:37:27 - undefined_method
+  error - Target of URI doesn't exist: '../../../core/utils/error_handler.dart' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:4:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'playlist_state.dart' - lib\presentation\blocs\playlist\playlist_cubit.dart:5:8 
+- uri_does_not_exist
+  error - The name 'PlaylistState' isn't a type, so it can't be used as a type argument - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:7:35 - non_type_as_type_argument
+  error - The method 'PlaylistInitial' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:13:15 - undefined_method
+  error - The method 'PlaylistLoading' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:16:10 - undefined_method
+  error - The method 'PlaylistLoaded' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:19:12 - undefined_method
+  error - The method 'PlaylistError' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:21:12 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:21:26 - undefined_method
+  error - The method 'PlaylistLoading' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:26:10 - undefined_method
+  error - The method 'PlaylistsLoaded' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:29:12 - undefined_method
+  error - The method 'PlaylistError' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:31:12 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:31:26 - undefined_method
+  error - The method 'PlaylistError' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:40:12 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:40:26 - undefined_method
+  error - The method 'PlaylistError' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:49:12 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:49:26 - undefined_method
+  error - The method 'PlaylistError' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:58:12 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:58:26 - undefined_method
+  error - The method 'PlaylistError' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:67:12 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:67:26 - undefined_method
+  error - The method 'PlaylistError' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:76:12 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'PlaylistCubit' - 
+lib\presentation\blocs\playlist\playlist_cubit.dart:76:26 - undefined_method
+  error - Target of URI doesn't exist: '../../../core/utils/error_handler.dart' - 
+lib\presentation\blocs\profile\profile_cubit.dart:4:8 - uri_does_not_exist
+  error - The method 'extractErrorMessage' isn't defined for the type 'ProfileCubit' - 
+lib\presentation\blocs\profile\profile_cubit.dart:21:25 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'ProfileCubit' - 
+lib\presentation\blocs\profile\profile_cubit.dart:31:25 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'ProfileCubit' - 
+lib\presentation\blocs\profile\profile_cubit.dart:44:25 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'ProfileCubit' - 
+lib\presentation\blocs\profile\profile_cubit.dart:54:25 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'ProfileCubit' - 
+lib\presentation\blocs\profile\profile_cubit.dart:64:25 - undefined_method
+  error - Target of URI doesn't exist: '../../../core/utils/error_handler.dart' - 
+lib\presentation\blocs\subscription\subscription_cubit.dart:4:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'subscription_state.dart' - 
+lib\presentation\blocs\subscription\subscription_cubit.dart:5:8 - uri_does_not_exist
+  error - The name 'SubscriptionState' isn't a type, so it can't be used as a type argument - 
+lib\presentation\blocs\subscription\subscription_cubit.dart:7:39 - non_type_as_type_argument
+  error - The method 'SubscriptionInitial' isn't defined for the type 'SubscriptionCubit' - 
+lib\presentation\blocs\subscription\subscription_cubit.dart:13:15 - undefined_method
+  error - The method 'SubscriptionError' isn't defined for the type 'SubscriptionCubit' - 
+lib\presentation\blocs\subscription\subscription_cubit.dart:20:12 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'SubscriptionCubit' - 
+lib\presentation\blocs\subscription\subscription_cubit.dart:20:30 - undefined_method
+  error - The method 'SubscriptionLoading' isn't defined for the type 'SubscriptionCubit' - 
+lib\presentation\blocs\subscription\subscription_cubit.dart:25:10 - undefined_method
+  error - The method 'SubscriptionLoaded' isn't defined for the type 'SubscriptionCubit' - 
+lib\presentation\blocs\subscription\subscription_cubit.dart:28:12 - undefined_method
+  error - The method 'SubscriptionError' isn't defined for the type 'SubscriptionCubit' - 
+lib\presentation\blocs\subscription\subscription_cubit.dart:30:12 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'SubscriptionCubit' - 
+lib\presentation\blocs\subscription\subscription_cubit.dart:30:30 - undefined_method
+  error - Target of URI doesn't exist: '../../../core/utils/error_handler.dart' - 
+lib\presentation\blocs\tweet\tweet_cubit.dart:5:8 - uri_does_not_exist
+  error - The method 'extractErrorMessage' isn't defined for the type 'TweetCubit' - 
+lib\presentation\blocs\tweet\tweet_cubit.dart:25:23 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'TweetCubit' - 
+lib\presentation\blocs\tweet\tweet_cubit.dart:34:23 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'TweetCubit' - 
+lib\presentation\blocs\tweet\tweet_cubit.dart:43:23 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'TweetCubit' - 
+lib\presentation\blocs\tweet\tweet_cubit.dart:52:23 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'TweetCubit' - 
+lib\presentation\blocs\tweet\tweet_cubit.dart:60:23 - undefined_method
+  error - Target of URI doesn't exist: '../../../core/utils/error_handler.dart' - 
+lib\presentation\blocs\video\video_cubit.dart:5:8 - uri_does_not_exist
+  error - The method 'extractErrorMessage' isn't defined for the type 'VideoCubit' - 
+lib\presentation\blocs\video\video_cubit.dart:25:23 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'VideoCubit' - 
+lib\presentation\blocs\video\video_cubit.dart:35:23 - undefined_method
+  error - The method 'togglePublishStatus' isn't defined for the type 'VideoRepository' - 
+lib\presentation\blocs\video\video_cubit.dart:41:24 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'VideoCubit' - 
+lib\presentation\blocs\video\video_cubit.dart:43:23 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'VideoCubit' - 
+lib\presentation\blocs\video\video_cubit.dart:51:23 - undefined_method
+  error - The method 'extractErrorMessage' isn't defined for the type 'VideoCubit' - 
+lib\presentation\blocs\video\video_cubit.dart:59:23 - undefined_method
+  error - The method 'toggleSubscription' isn't defined for the type 'ProfileCubit' - 
+lib\presentation\screens\channel_profile\channel_profile_screen.dart:83:75 - undefined_method
+  error - The named parameter 'query' isn't defined - lib\presentation\screens\home\home_screen.dart:58:65 - 
+undefined_named_parameter
+  error - The method 'getLikedVideos' isn't defined for the type 'VideoCubit' - 
+lib\presentation\screens\library\library_screen.dart:31:34 - undefined_method
+  error - The name 'PlaylistState' isn't a type, so it can't be used as a type argument - 
+lib\presentation\screens\library\library_screen.dart:93:38 - non_type_as_type_argument
+  error - The name 'PlaylistLoading' isn't defined, so it can't be used in an 'is' expression - 
+lib\presentation\screens\library\library_screen.dart:95:28 - type_test_with_undefined_name
+  error - The name 'PlaylistsLoaded' isn't defined, so it can't be used in an 'is' expression - 
+lib\presentation\screens\library\library_screen.dart:98:28 - type_test_with_undefined_name
+  error - The method 'updateAccountDetails' isn't defined for the type 'ProfileCubit' - 
+lib\presentation\screens\settings\settings_screen.dart:128:54 - undefined_method
+  error - The name 'SubscriptionState' isn't a type, so it can't be used as a type argument - 
+lib\presentation\screens\subscriptions\subscriptions_screen.dart:33:44 - non_type_as_type_argument
+  error - The name 'SubscriptionLoading' isn't defined, so it can't be used in an 'is' expression - 
+lib\presentation\screens\subscriptions\subscriptions_screen.dart:35:24 - type_test_with_undefined_name
+  error - The name 'SubscriptionsLoaded' isn't defined, so it can't be used in an 'is' expression - 
+lib\presentation\screens\subscriptions\subscriptions_screen.dart:38:24 - type_test_with_undefined_name
+  error - The method 'toggleSubscription' isn't defined for the type 'ProfileCubit' - 
+lib\presentation\screens\video_player\video_player_screen.dart:370:53 - undefined_method
+
+
