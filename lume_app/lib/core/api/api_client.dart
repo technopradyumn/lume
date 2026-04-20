@@ -18,8 +18,9 @@ class ApiClient {
   void initialize() {
     _dio = Dio(BaseOptions(
       baseUrl: AppConstants.baseUrl,
-      connectTimeout: const Duration(seconds: 15),
-      receiveTimeout: const Duration(seconds: 15),
+      connectTimeout: const Duration(seconds: 30),
+      sendTimeout: const Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 60),
       headers: {'Content-Type': 'application/json'},
     ));
 
@@ -75,7 +76,8 @@ class _AuthInterceptor extends Interceptor {
             accessToken: newAccessToken,
             refreshToken: newRefreshToken,
           );
-          err.requestOptions.headers['Authorization'] = 'Bearer $newAccessToken';
+          err.requestOptions.headers['Authorization'] =
+              'Bearer $newAccessToken';
           final retryResponse = await _dio.fetch(err.requestOptions);
           handler.resolve(retryResponse);
           return;
