@@ -26,7 +26,6 @@ const getAllVideos = asyncHandler(async (req, res) => {
   }
 
   if (query && query.toLowerCase() === "trending") {
-    // Return latest videos by default for trending query, skip title/description match filter
   } else if (query) {
     match.$or = [
       { title: { $regex: query, $options: "i" } },

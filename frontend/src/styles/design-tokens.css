@@ -97,7 +97,6 @@
   --bg-overlay: rgba(245, 245, 247, 0.72);
   --navbar-bg: rgba(255, 255, 255, 0.68);
 
-  /* The dark-theme cyan is too pale on frosted light surfaces. */
   --accent-glow: #0066cc;
   --accent-muted: rgba(0, 122, 255, 0.14);
 

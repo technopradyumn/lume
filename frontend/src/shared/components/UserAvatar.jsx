@@ -1,13 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-/**
- * UserAvatar component.
- *
- * - By default, wraps the avatar in a Link to /channel/:username when the user has a username.
- * - Pass `noLink={true}` to suppress the auto-link (e.g. when already inside a Link, or for the logged-in user's own avatar in forms).
- * - Pass `linkTo` to override the destination URL.
- */
 export function UserAvatar({
   user,
   size = "md",

@@ -90,14 +90,12 @@ export function VideoCard({ video, index = 0 }) {
       </Link>
       <div className="card__body">
         <div style={{ display: "flex", gap: "var(--space-3)" }}>
-          {/* Avatar links to channel — stopPropagation inside UserAvatar already */}
           <UserAvatar user={video.owner} size="sm" noLink />
           <div style={{ flex: 1, minWidth: 0 }}>
             <Link to={videoPath} className="card__title text-clamp-2">
               {video.title}
             </Link>
             <div className="card__meta">
-              {/* Channel name link — stop propagation so outer card link doesn't fire */}
               <Link
                 to={channelPath}
                 onClick={(e) => e.stopPropagation()}

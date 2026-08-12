@@ -134,7 +134,6 @@ export function TweetCard({ tweet, onLike, onDelete, onAddReply }) {
       className="tweet-card animate-fade-in-up"
       style={{ position: "relative" }}
     >
-      {/* Toast */}
       {toast && (
         <div
           style={{
@@ -158,7 +157,6 @@ export function TweetCard({ tweet, onLike, onDelete, onAddReply }) {
         </div>
       )}
 
-      {/* Header */}
       <div className="tweet-card__header">
         <UserAvatar user={tweet.owner} size="md" />
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -190,7 +188,6 @@ export function TweetCard({ tweet, onLike, onDelete, onAddReply }) {
           </div>
         </div>
 
-        {/* Subscribe button (non-owners only) */}
         {user && !isOwner && (
           <button
             className={`btn btn--sm ${isSubscribed ? "btn--secondary" : "btn--primary"}`}
@@ -206,7 +203,6 @@ export function TweetCard({ tweet, onLike, onDelete, onAddReply }) {
           </button>
         )}
 
-        {/* 3-dot menu */}
         <div style={{ position: "relative", flexShrink: 0 }}>
           <button
             className="btn btn--icon-sm btn--ghost"
@@ -250,12 +246,10 @@ export function TweetCard({ tweet, onLike, onDelete, onAddReply }) {
         </div>
       </div>
 
-      {/* Content */}
       <p className="tweet-card__content" style={{ whiteSpace: "pre-wrap" }}>
         {tweet.content}
       </p>
 
-      {/* Image attachment */}
       {tweet.image && (
         <div
           style={{
@@ -274,7 +268,6 @@ export function TweetCard({ tweet, onLike, onDelete, onAddReply }) {
         </div>
       )}
 
-      {/* Actions */}
       <div className="tweet-card__actions" style={{ position: "relative" }}>
         <button
           className={`tweet-card__action ${tweet.isLiked ? "tweet-card__action--liked" : ""}`}
@@ -292,7 +285,6 @@ export function TweetCard({ tweet, onLike, onDelete, onAddReply }) {
           <span>{tweet.replies?.length || 0}</span>
         </button>
 
-        {/* Share button with dropdown */}
         <div style={{ position: "relative" }}>
           <button
             className={`tweet-card__action ${copied ? "tweet-card__action--liked" : ""}`}
@@ -338,7 +330,6 @@ export function TweetCard({ tweet, onLike, onDelete, onAddReply }) {
         </div>
       </div>
 
-      {/* Replies section */}
       {showReplies && (
         <div
           style={{

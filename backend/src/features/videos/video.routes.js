@@ -16,12 +16,10 @@ import { upload } from "../../shared/middlewares/multer.middleware.js";
 
 const router = Router();
 
-// Public routes (readable without auth)
 router.route("/").get(optionalVerifyJWT, getAllVideos);
 router.route("/:videoId").get(optionalVerifyJWT, getVideoById);
 router.route("/views/:videoId").patch(optionalVerifyJWT, incrementVideoViews);
 
-// Secure routes (require JWT verification)
 router.use(verifyJWT);
 
 router.route("/").post(

@@ -26,7 +26,6 @@ export function SearchResultsPage() {
           return;
         }
       } catch {
-        /* Search text normally. */
       }
       searchVideos();
     }

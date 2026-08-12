@@ -48,34 +48,36 @@ The project is built as a monorepo with a React web client, Express API, MongoDB
 
 ## Full technology stack
 
+### Core MERN architecture
+
+Lume is built on the **MERN stack**: **MongoDB** stores product data, **Express.js** provides the REST API, **React** delivers the web interface, and **Node.js** runs the backend services. The platform extends this foundation with JWT authentication, Multer-powered uploads, Supabase media storage, reusable middleware, and a Flutter mobile client.
+
 | Area | Technology | How it is used |
 | --- | --- | --- |
-| Web application | React 18 | Component-based single-page user interface |
-| Web build system | Vite 5 | Fast local development server and optimized production bundling |
-| Web routing | React Router 6 | Client-side protected routes, public pages, and feature navigation |
-| Client data layer | Axios | REST API client with request interceptors and credential support |
-| UI and motion | CSS design tokens, Framer Motion, Lucide React | Responsive visual system, transitions, and iconography |
-| API runtime | Node.js | JavaScript server runtime |
-| API framework | Express 5 | REST endpoints, middleware, routing, and static-file delivery |
-| Database | MongoDB | Persistent storage for users, videos, engagement, and community data |
-| Object modeling | Mongoose | Schemas, validation, relationships, and MongoDB access |
-| Authentication | JSON Web Tokens and cookie-parser | Access-token authorization and refresh-token cookie sessions |
-| Password security | bcrypt | Secure password hashing before persistence |
-| Upload handling | Multer | Multipart uploads for videos, thumbnails, avatars, and post images |
-| Media storage | Supabase Storage | Hosted video/image uploads and public media URLs |
-| API resilience | Custom `ApiError`, `ApiResponse`, and `asyncHandler` utilities | Consistent error responses and asynchronous route handling |
-| Mobile client | Flutter and Dart | Native Android/iOS client source with repositories, Cubits, and feature screens |
-| Mobile state management | flutter_bloc / Cubit | Predictable mobile feature state and UI updates |
-| Local developer tooling | npm, Nodemon, Concurrently | Dependency management, server reloads, and parallel services |
+| Frontend | React 18 + JSX | Component-based single-page application for the web |
+| Frontend tooling | Vite 5 | Fast local development server and optimized production bundles |
+| Navigation | React Router 6 | Client-side public, demo, and authenticated routes |
+| API integration | Axios | REST client with auth interceptor and cookie credentials |
+| UI system | CSS design tokens, responsive layouts, Framer Motion, Lucide React | Consistent design, motion, icons, desktop, and mobile navigation |
+| Backend | Node.js + Express 5 | REST API, feature routes, middleware pipeline, and static-file delivery |
+| Database | MongoDB + Mongoose | Document persistence, schemas, validation, relationships, and queries |
+| Authentication | JWT, HTTP-only refresh cookies, cookie-parser | Secure login sessions and protected API access |
+| Password security | bcrypt | Hashed password storage and credential verification |
+| Middleware | CORS, JSON parsing, URL encoding, Multer, auth middleware, async handler | Browser access, request parsing, multipart files, authorization, and safe async routes |
+| Media uploads | Multer | Receives video files, thumbnails, avatars, and community images |
+| Media storage | Supabase Storage | Stores images and video files, then returns public media URLs |
+| Error handling | `ApiError`, `ApiResponse`, `asyncHandler` | Predictable API success/error shapes and centralized error handling |
+| Logging and development | Morgan, Nodemon, Concurrently, npm | Request logging, automatic reloads, and parallel local services |
+| Mobile | Flutter, Dart, flutter_bloc/Cubit, flutter_secure_storage | Android/iOS client with feature state management and secure local storage |
 
 ## System architecture
 
 ```mermaid
 flowchart LR
-    U["User"] --> W["React web app\nVite on :5173"]
+    U["User"] --> W["React web app\nReact + Vite"]
     U --> M["Flutter mobile app"]
 
-    W -->|"HTTPS / REST /api/v1"| A["Express API\nNode.js on :8000"]
+    W -->|"HTTPS / REST /api/v1"| A["Express API\nNode.js"]
     M -->|"HTTPS / REST /api/v1"| A
 
     A --> AU["Auth middleware\nJWT + refresh cookie"]

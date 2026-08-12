@@ -30,7 +30,6 @@ export function EmptyState({
           justifyContent: "center",
         }}
       >
-        {/* Glow halo in brand accent colors */}
         <div
           style={{
             position: "absolute",
@@ -43,7 +42,6 @@ export function EmptyState({
           }}
         />
 
-        {/* Main Icon Badge */}
         <div
           style={{
             width: "84px",

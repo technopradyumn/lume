@@ -233,7 +233,7 @@ const addTweetReply = asyncHandler(async (req, res) => {
       sender: req.user._id,
       type: "REPLY",
       message: `${req.user.fullName} replied to your community post.`,
-      link: `/home`, // or some specific community link
+      link: `/home`,
     });
   }
 

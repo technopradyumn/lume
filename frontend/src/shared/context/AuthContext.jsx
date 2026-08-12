@@ -44,7 +44,6 @@ export function AuthProvider({ children }) {
         localStorage.removeItem("lume_user");
       }
     } catch {
-      // If server verification fails (e.g. 401 or no valid cookie), reset local session
       setUser(null);
       setIsAuthenticated(false);
       localStorage.removeItem("lume_user");
@@ -83,7 +82,6 @@ export function AuthProvider({ children }) {
     try {
       await apiLogout();
     } catch (error) {
-      // Clear this browser's session even if the server is unavailable.
       console.warn("Server sign-out failed; local session cleared.", error);
     } finally {
       setUser(null);

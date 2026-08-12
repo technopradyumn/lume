@@ -111,7 +111,6 @@
   background: var(--bg-elevated);
 }
 
-/* Keep the action menu free to extend beyond an individual video card. */
 .video-card {
   overflow: visible;
 }
@@ -792,7 +791,6 @@
   padding: var(--space-2);
 }
 
-/* Video-card triggers sit at the top edge, so menus open downward into view. */
 .card-action-menu {
   top: calc(100% + var(--space-2));
   right: 0;
@@ -2166,7 +2164,6 @@
   margin-top: var(--space-2);
 }
 
-/* iOS-inspired frosted surface treatment shared by product screens. */
 .stat-card,
 .tweet-card,
 .comment,

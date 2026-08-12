@@ -74,7 +74,6 @@ export function Navbar({ sidebarCollapsed, onToggleSidebar }) {
           return;
         }
       } catch {
-        /* Search plain text when it is not a URL. */
       }
       navigate(`/search?q=${encodeURIComponent(value)}`);
     }

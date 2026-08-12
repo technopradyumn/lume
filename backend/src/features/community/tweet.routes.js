@@ -22,7 +22,6 @@ router
   .get(optionalVerifyJWT, getTweets);
 router.route("/user/:userId").get(optionalVerifyJWT, getUserTweets);
 router.route("/reply/:tweetId").post(verifyJWT, addTweetReply);
-// Single post route — must come BEFORE /:tweetId to avoid conflict with /reply/:tweetId etc.
 router.route("/post/:tweetId").get(optionalVerifyJWT, getTweetById);
 router
   .route("/:tweetId")

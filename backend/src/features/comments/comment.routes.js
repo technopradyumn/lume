@@ -12,10 +12,8 @@ import {
 
 const router = Router();
 
-// Public route to read comments (parses token optionally)
 router.route("/:videoId").get(optionalVerifyJWT, getVideoComments);
 
-// Secure routes below
 router.use(verifyJWT);
 
 router.route("/:videoId").post(addComment);

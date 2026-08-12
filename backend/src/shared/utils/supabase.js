@@ -9,10 +9,6 @@ const supabaseKey =
 const supabase =
   supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 
-/**
- * Uploads a local file to Supabase Storage bucket.
- * Falls back safely to dynamic host static serving if Supabase environment keys are missing.
- */
 const uploadOnSupabase = async (
   localFilePath,
   bucketName = "lume-uploads",
@@ -50,7 +46,6 @@ const uploadOnSupabase = async (
       }
     }
 
-    // Production-safe dynamic server host resolution fallback
     const protocol = req?.protocol || "http";
     const host = req?.get ? req.get("host") : null;
     const baseUrl = host ? `${protocol}://${host}` : "";

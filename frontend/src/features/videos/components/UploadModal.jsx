@@ -136,7 +136,6 @@ export function UploadModal({ isOpen, onClose, onUploaded }) {
               </div>
             )}
 
-            {/* Video File Picker */}
             <div>
               <label className="auth-form__label">Video File *</label>
               <input
@@ -217,7 +216,6 @@ export function UploadModal({ isOpen, onClose, onUploaded }) {
               </div>
             </div>
 
-            {/* Title */}
             <div>
               <label className="auth-form__label">Title *</label>
               <input
@@ -230,7 +228,6 @@ export function UploadModal({ isOpen, onClose, onUploaded }) {
               />
             </div>
 
-            {/* Description */}
             <div>
               <label className="auth-form__label">Description *</label>
               <textarea
@@ -243,7 +240,6 @@ export function UploadModal({ isOpen, onClose, onUploaded }) {
               />
             </div>
 
-            {/* Category */}
             <div>
               <label className="auth-form__label">Category</label>
               <div className="pills">
@@ -260,7 +256,6 @@ export function UploadModal({ isOpen, onClose, onUploaded }) {
               </div>
             </div>
 
-            {/* Thumbnail File Picker */}
             <div>
               <label className="auth-form__label">Thumbnail Image *</label>
               <input
