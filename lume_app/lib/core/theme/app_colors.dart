@@ -1,55 +1,39 @@
-// lib/core/theme/app_colors.dart
 import 'package:flutter/material.dart';
 
 class AppColors {
   AppColors._();
 
-  // Backgrounds
-  static const Color background = Color(0xFF0A0A0F);
-  static const Color surface = Color(0xFF12121C);
-  static const Color surfaceVariant = Color(0xFF1A1A2E);
-  static const Color surfaceLight = Color(0xFF1E1E32);
+  static const bgPrimary = Color(0xFF0A0A0F);
+  static const bgSurface = Color(0xFF13131D);
+  static const bgElevated = Color(0xFF1C1C2E);
+  static const bgHover = Color(0xFF252540);
 
-  // Primary palette
-  static const Color primary = Color(0xFF7C3AED);
-  static const Color primaryLight = Color(0xFF9F5CF7);
-  static const Color primaryDark = Color(0xFF5B21B6);
-  static const Color secondary = Color(0xFFA855F7);
+  static const accentStart = Color(0xFF8B5CF6);
+  static const accentEnd = Color(0xFF6366F1);
+  static const accentGlow = Color(0xFFA78BFA);
+  static const accentMuted = Color(0x268B5CF6); 
 
-  // Accent
-  static const Color accent = Color(0xFF06B6D4);
-  static const Color accentGold = Color(0xFFF59E0B);
+  static const textPrimary = Color(0xFFF1F5F9);
+  static const textSecondary = Color(0xFF94A3B8);
+  static const textTertiary = Color(0xFF64748B);
 
-  // Text
-  static const Color textPrimary = Color(0xFFF8F8FF);
-  static const Color textSecondary = Color(0xFF9CA3AF);
-  static const Color textSubtle = Color(0xFF6B7280);
+  static const success = Color(0xFF10B981);
+  static const danger = Color(0xFFEF4444);
+  static const warning = Color(0xFFF59E0B);
+  static const info = Color(0xFF3B82F6);
 
-  // Semantic
-  static const Color error = Color(0xFFEF4444);
-  static const Color success = Color(0xFF10B981);
-  static const Color warning = Color(0xFFF59E0B);
+  static const borderDefault = Color(0x1A8B5CF6); 
+  static const borderHover = Color(0x408B5CF6);    
 
-  // Border & Divider
-  static const Color border = Color(0xFF2D2D4A);
-  static const Color divider = Color(0xFF1F1F35);
-
-  // Gradients
-  static const LinearGradient primaryGradient = LinearGradient(
-    colors: [Color(0xFF7C3AED), Color(0xFFA855F7)],
+  static const accentGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
+    colors: [accentStart, accentEnd],
   );
 
-  static const LinearGradient backgroundGradient = LinearGradient(
-    colors: [Color(0xFF0A0A0F), Color(0xFF12121C)],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
-
-  static const LinearGradient cardGradient = LinearGradient(
-    colors: [Color(0xFF1A1A2E), Color(0xFF12121C)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
+  static const lightBgPrimary = Color(0xFFF8FAFC);
+  static const lightBgSurface = Color(0xFFFFFFFF);
+  static const lightBgElevated = Color(0xFFF1F5F9);
+  static const lightTextPrimary = Color(0xFF0F172A);
+  static const lightTextSecondary = Color(0xFF475569);
 }

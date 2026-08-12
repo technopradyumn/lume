@@ -1,10 +1,7 @@
-// lib/presentation/screens/splash/splash_screen.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../blocs/auth/auth_cubit.dart';
-import '../../blocs/auth/auth_state.dart';
+import '../../widgets/gradient_button.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,24 +12,30 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _fadeAnim;
-  late Animation<double> _scaleAnim;
+  late Animation<double> _scaleAnimation;
+  late Animation<double> _fadeAnimation;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200));
-    _fadeAnim = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0, 0.6, curve: Curves.easeOut)),
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
     );
-    _scaleAnim = Tween<double>(begin: 0.6, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0, 0.7, curve: Curves.elasticOut)),
+
+    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
     );
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    );
+
     _controller.forward();
 
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
-        context.read<AuthCubit>().checkSession();
+        context.go('/home');
       }
     });
   }
@@ -45,80 +48,66 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
-      listener: (context, state) {
-        if (state is AuthAuthenticated) {
-          context.go('/home');
-        } else if (state is AuthUnauthenticated) {
-          context.go('/login');
-        }
-      },
-      child: Scaffold(
-        backgroundColor: AppColors.background,
-        body: Center(
-          child: AnimatedBuilder(
-            animation: _controller,
-            builder: (_, __) => Opacity(
-              opacity: _fadeAnim.value,
-              child: Transform.scale(
-                scale: _scaleAnim.value,
+    return Scaffold(
+      backgroundColor: AppColors.bgPrimary,
+      body: Center(
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            return FadeTransition(
+              opacity: _fadeAnimation,
+              child: ScaleTransition(
+                scale: _scaleAnimation,
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Logo
                     Container(
-                      width: 90,
-                      height: 90,
+                      width: 80,
+                      height: 80,
                       decoration: BoxDecoration(
-                        gradient: AppColors.primaryGradient,
+                        gradient: AppColors.accentGradient,
                         borderRadius: BorderRadius.circular(24),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.primary.withOpacity(0.5),
-                            blurRadius: 30,
-                            spreadRadius: 2,
+                            color: AppColors.accentStart.withOpacity(0.4),
+                            blurRadius: 24,
+                            offset: const Offset(0, 8),
                           ),
                         ],
                       ),
-                      child: const Icon(Icons.play_circle_fill, color: Colors.white, size: 52),
+                      child: const Icon(
+                        Icons.play_arrow_rounded,
+                        size: 48,
+                        color: Colors.white,
+                      ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 24),
                     ShaderMask(
-                      shaderCallback: (bounds) =>
-                          AppColors.primaryGradient.createShader(bounds),
+                      shaderCallback: (bounds) => AppColors.accentGradient.createShader(bounds),
                       child: const Text(
-                        'LUME',
+                        'Lume',
                         style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w800,
+                          fontSize: 36,
+                          fontWeight: FontWeight.w900,
                           color: Colors.white,
-                          letterSpacing: 8,
+                          letterSpacing: -1,
                         ),
                       ),
                     ),
                     const SizedBox(height: 8),
                     const Text(
-                      'Your world of videos',
+                      'Watch • Create • Connect',
                       style: TextStyle(
-                        color: AppColors.textSecondary,
                         fontSize: 14,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                    const SizedBox(height: 40),
-                    SizedBox(
-                      width: 28,
-                      height: 28,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        valueColor: AlwaysStoppedAnimation(AppColors.primary.withOpacity(0.7)),
+                        color: AppColors.textSecondary,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );

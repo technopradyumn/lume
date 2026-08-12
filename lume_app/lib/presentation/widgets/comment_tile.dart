@@ -1,34 +1,28 @@
-// lib/presentation/widgets/comment_tile.dart
 import 'package:flutter/material.dart';
+import 'package:timeago/timeago.dart' as timeago;
 import '../../core/theme/app_colors.dart';
-import '../../core/utils/date_formatter.dart';
 import '../../data/models/comment_model.dart';
 import 'channel_avatar.dart';
 
 class CommentTile extends StatelessWidget {
   final CommentModel comment;
-  final bool isOwner;
   final VoidCallback? onLike;
-  final VoidCallback? onDelete;
 
-  const CommentTile({
-    super.key,
-    required this.comment,
-    this.isOwner = false,
-    this.onLike,
-    this.onDelete,
-  });
+  const CommentTile({super.key, required this.comment, this.onLike});
 
   @override
   Widget build(BuildContext context) {
+    final isLiked = comment.isLiked ?? false;
+    final likesCount = comment.likesCount ?? 0;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ChannelAvatar(
             imageUrl: comment.owner?.avatar,
-            name: comment.owner?.fullName ?? '',
+            name: comment.owner?.fullName ?? 'U',
             size: 32,
           ),
           const SizedBox(width: 10),
@@ -39,45 +33,49 @@ class CommentTile extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      comment.owner?.fullName ?? 'Unknown',
+                      comment.owner?.fullName ?? 'User',
                       style: const TextStyle(
-                        color: AppColors.textPrimary,
-                        fontSize: 12,
+                        fontSize: 13,
                         fontWeight: FontWeight.w600,
+                        color: AppColors.textPrimary,
                       ),
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      comment.createdAt != null ? DateFormatter.timeAgo(comment.createdAt!) : '',
-                      style: const TextStyle(color: AppColors.textSubtle, fontSize: 11),
-                    ),
-                    const Spacer(),
-                    if (isOwner)
-                      GestureDetector(
-                        onTap: onDelete,
-                        child: const Icon(Icons.delete_outline, color: AppColors.error, size: 16),
+                      comment.createdAt != null ? timeago.format(comment.createdAt!) : '',
+                      style: const TextStyle(
+                        fontSize: 11,
+                        color: AppColors.textTertiary,
                       ),
+                    ),
                   ],
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 2),
                 Text(
                   comment.content,
-                  style: const TextStyle(color: AppColors.textSecondary, fontSize: 13, height: 1.4),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: AppColors.textSecondary,
+                    height: 1.4,
+                  ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 4),
                 GestureDetector(
                   onTap: onLike,
                   child: Row(
                     children: [
                       Icon(
-                        comment.isLiked == true ? Icons.thumb_up : Icons.thumb_up_outlined,
+                        isLiked ? Icons.favorite : Icons.favorite_border,
                         size: 14,
-                        color: comment.isLiked == true ? AppColors.primary : AppColors.textSubtle,
+                        color: isLiked ? AppColors.danger : AppColors.textTertiary,
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        '${comment.likesCount ?? 0}',
-                        style: const TextStyle(color: AppColors.textSubtle, fontSize: 11),
+                        '$likesCount',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: isLiked ? AppColors.danger : AppColors.textTertiary,
+                        ),
                       ),
                     ],
                   ),

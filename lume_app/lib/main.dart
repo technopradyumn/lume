@@ -1,4 +1,3 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +26,6 @@ import 'presentation/blocs/dashboard/dashboard_cubit.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Set system UI
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.light,
@@ -35,13 +33,11 @@ void main() {
     systemNavigationBarIconBrightness: Brightness.light,
   ));
 
-  // Force portrait
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
-  // Initialize API client (Dio with interceptors)
   ApiClient().initialize();
 
   runApp(const LumeApp());
@@ -52,7 +48,6 @@ class LumeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Instantiate repositories
     final authRepo = AuthRepository();
     final userRepo = UserRepository();
     final videoRepo = VideoRepository();
@@ -107,10 +102,11 @@ class LumeApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Lume',
         debugShowCheckedModeBanner: false,
-        theme: AppTheme.darkTheme,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.system,
         routerConfig: appRouter,
         builder: (context, child) {
-          // Clamp text scaling to prevent layout overflow
           final mediaQuery = MediaQuery.of(context);
           final data = mediaQuery.copyWith(
             textScaler: mediaQuery.textScaler.clamp(

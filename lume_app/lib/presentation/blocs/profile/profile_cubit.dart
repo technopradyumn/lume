@@ -1,4 +1,3 @@
-// lib/presentation/blocs/profile/profile_cubit.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/repositories/user_repository.dart';
 import '../../../data/repositories/subscription_repository.dart';
@@ -72,7 +71,6 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> toggleSubscription(String channelId) async {
     try {
       await _subscriptionRepo.toggleSubscription(channelId);
-      // Optionally refresh profile if needed
     } catch (e) {
       emit(ProfileError(extractErrorMessage(e)));
     }

@@ -1,4 +1,3 @@
-// lib/presentation/blocs/subscription/subscription_state.dart
 import 'package:flutter/foundation.dart';
 import '../../../data/models/user_model.dart';
 

@@ -1,4 +1,3 @@
-﻿// lib/presentation/blocs/tweet/tweet_state.dart
 import 'package:flutter/foundation.dart';
 import '../../../data/models/tweet_model.dart';
 

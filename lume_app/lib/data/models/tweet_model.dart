@@ -1,4 +1,3 @@
-// lib/data/models/tweet_model.dart
 import 'package:equatable/equatable.dart';
 import 'user_model.dart';
 

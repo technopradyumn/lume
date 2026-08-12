@@ -1,37 +1,34 @@
-// lib/presentation/widgets/tweet_card.dart
 import 'package:flutter/material.dart';
+import 'package:timeago/timeago.dart' as timeago;
 import '../../core/theme/app_colors.dart';
-import '../../core/utils/date_formatter.dart';
 import '../../data/models/tweet_model.dart';
 import 'channel_avatar.dart';
 
 class TweetCard extends StatelessWidget {
   final TweetModel tweet;
-  final bool isOwner;
   final VoidCallback? onLike;
-  final VoidCallback? onEdit;
   final VoidCallback? onDelete;
-  final VoidCallback? onChannelTap;
+  final bool isOwner;
 
   const TweetCard({
     super.key,
     required this.tweet,
-    this.isOwner = false,
     this.onLike,
-    this.onEdit,
     this.onDelete,
-    this.onChannelTap,
+    this.isOwner = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final isLiked = tweet.isLiked ?? false;
+    final likesCount = tweet.likesCount ?? 0;
+
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: AppColors.bgSurface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.border, width: 0.5),
+        border: Border.all(color: AppColors.borderDefault),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,54 +37,45 @@ class TweetCard extends StatelessWidget {
             children: [
               ChannelAvatar(
                 imageUrl: tweet.owner?.avatar,
-                name: tweet.owner?.fullName ?? '',
-                size: 38,
-                onTap: onChannelTap,
+                name: tweet.owner?.fullName ?? 'U',
+                size: 36,
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      tweet.owner?.fullName ?? 'Unknown',
+                      tweet.owner?.fullName ?? 'User',
                       style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
                         color: AppColors.textPrimary,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 13,
                       ),
                     ),
                     Text(
-                      '@${tweet.owner?.username ?? ''} • ${tweet.createdAt != null ? DateFormatter.timeAgo(tweet.createdAt!) : ''}',
+                      '@${tweet.owner?.username ?? "user"} • ${tweet.createdAt != null ? timeago.format(tweet.createdAt!) : ""}',
                       style: const TextStyle(
-                        color: AppColors.textSubtle,
                         fontSize: 11,
+                        color: AppColors.textTertiary,
                       ),
                     ),
                   ],
                 ),
               ),
               if (isOwner)
-                PopupMenuButton<String>(
-                  icon: const Icon(Icons.more_horiz, color: AppColors.textSecondary, size: 18),
-                  color: AppColors.surfaceVariant,
-                  onSelected: (v) {
-                    if (v == 'edit') onEdit?.call();
-                    if (v == 'delete') onDelete?.call();
-                  },
-                  itemBuilder: (_) => [
-                    const PopupMenuItem(value: 'edit', child: Text('Edit', style: TextStyle(color: AppColors.textPrimary))),
-                    const PopupMenuItem(value: 'delete', child: Text('Delete', style: TextStyle(color: AppColors.error))),
-                  ],
+                IconButton(
+                  icon: const Icon(Icons.delete_outline, size: 18, color: AppColors.danger),
+                  onPressed: onDelete,
                 ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
           Text(
             tweet.content,
             style: const TextStyle(
-              color: AppColors.textPrimary,
               fontSize: 14,
+              color: AppColors.textPrimary,
               height: 1.5,
             ),
           ),
@@ -99,17 +87,32 @@ class TweetCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Icon(
-                      tweet.isLiked == true ? Icons.favorite : Icons.favorite_border,
-                      color: tweet.isLiked == true ? AppColors.error : AppColors.textSubtle,
-                      size: 18,
+                      isLiked ? Icons.favorite : Icons.favorite_border,
+                      size: 16,
+                      color: isLiked ? AppColors.danger : AppColors.textTertiary,
                     ),
-                    const SizedBox(width: 4),
+                    const SizedBox(width: 6),
                     Text(
-                      '${tweet.likesCount ?? 0}',
-                      style: const TextStyle(color: AppColors.textSubtle, fontSize: 12),
+                      '$likesCount',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isLiked ? AppColors.danger : AppColors.textTertiary,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ],
                 ),
+              ),
+              const SizedBox(width: 24),
+              Row(
+                children: const [
+                  Icon(Icons.chat_bubble_outline, size: 16, color: AppColors.textTertiary),
+                  SizedBox(width: 6),
+                  Text(
+                    'Reply',
+                    style: TextStyle(fontSize: 12, color: AppColors.textTertiary, fontWeight: FontWeight.w600),
+                  ),
+                ],
               ),
             ],
           ),

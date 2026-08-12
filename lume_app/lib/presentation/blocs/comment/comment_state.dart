@@ -1,4 +1,3 @@
-// lib/presentation/blocs/comment/comment_state.dart
 import 'package:flutter/foundation.dart';
 import '../../../data/models/comment_model.dart';
 

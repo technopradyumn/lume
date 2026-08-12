@@ -1,87 +1,68 @@
-// lib/presentation/widgets/video_card.dart
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:timeago/timeago.dart' as timeago;
 import '../../core/theme/app_colors.dart';
-import '../../core/utils/date_formatter.dart';
 import '../../data/models/video_model.dart';
 import 'channel_avatar.dart';
 
 class VideoCard extends StatelessWidget {
   final VideoModel video;
   final VoidCallback? onTap;
-  final VoidCallback? onChannelTap;
-  final VoidCallback? onMoreTap;
 
-  const VideoCard({
-    super.key,
-    required this.video,
-    this.onTap,
-    this.onChannelTap,
-    this.onMoreTap,
-  });
+  const VideoCard({super.key, required this.video, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
-          color: AppColors.surface,
+          color: AppColors.bgSurface,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.border, width: 0.5),
+          border: Border.all(color: AppColors.borderDefault),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Thumbnail
             ClipRRect(
               borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Stack(
-                  children: [
-                    CachedNetworkImage(
+              child: Stack(
+                children: [
+                  AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: CachedNetworkImage(
                       imageUrl: video.thumbnail,
                       fit: BoxFit.cover,
-                      width: double.infinity,
-                      placeholder: (_, __) => Shimmer.fromColors(
-                        baseColor: AppColors.surface,
-                        highlightColor: AppColors.surfaceLight,
-                        child: Container(color: AppColors.surface),
-                      ),
+                      placeholder: (_, __) => Container(color: AppColors.bgElevated),
                       errorWidget: (_, __, ___) => Container(
-                        color: AppColors.surfaceVariant,
-                        child: const Icon(Icons.video_library_outlined,
-                            color: AppColors.textSubtle, size: 40),
+                        color: AppColors.bgElevated,
+                        child: const Icon(Icons.play_circle_outline, color: AppColors.textTertiary, size: 48),
                       ),
                     ),
-                    // Duration badge
-                    Positioned(
-                      bottom: 8,
-                      right: 8,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.8),
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: Text(
-                          video.durationFormatted,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                          ),
+                  ),
+                  Positioned(
+                    bottom: 8,
+                    right: 8,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text(
+                        video.durationFormatted,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'monospace',
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            // Info
             Padding(
               padding: const EdgeInsets.all(12),
               child: Row(
@@ -89,9 +70,8 @@ class VideoCard extends StatelessWidget {
                 children: [
                   ChannelAvatar(
                     imageUrl: video.owner?.avatar,
-                    name: video.owner?.fullName ?? '',
-                    size: 36,
-                    onTap: onChannelTap,
+                    name: video.owner?.fullName ?? 'U',
+                    size: 32,
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -103,33 +83,31 @@ class VideoCard extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                            color: AppColors.textPrimary,
-                            fontSize: 14,
+                            fontSize: 13,
                             fontWeight: FontWeight.w600,
+                            color: AppColors.textPrimary,
                             height: 1.3,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          '${video.owner?.fullName ?? 'Unknown'} • ${DateFormatter.formatViewCount(video.views)} • ${video.createdAt != null ? DateFormatter.timeAgo(video.createdAt!) : ''}',
+                          video.owner?.fullName ?? '',
                           style: const TextStyle(
-                            color: AppColors.textSecondary,
                             fontSize: 12,
+                            color: AppColors.textSecondary,
                           ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          '${_formatViews(video.views)} views • ${video.createdAt != null ? timeago.format(video.createdAt!) : ''}',
+                          style: const TextStyle(
+                            fontSize: 11,
+                            color: AppColors.textTertiary,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  if (onMoreTap != null)
-                    GestureDetector(
-                      onTap: onMoreTap,
-                      child: const Padding(
-                        padding: EdgeInsets.all(4),
-                        child: Icon(Icons.more_vert, color: AppColors.textSecondary, size: 20),
-                      ),
-                    ),
                 ],
               ),
             ),
@@ -138,55 +116,10 @@ class VideoCard extends StatelessWidget {
       ),
     );
   }
-}
 
-class VideoCardSkeleton extends StatelessWidget {
-  const VideoCardSkeleton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: AppColors.surface,
-      highlightColor: AppColors.surfaceLight,
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Column(
-          children: [
-            AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.surfaceVariant,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Row(
-                children: [
-                  Container(width: 36, height: 36, decoration: const BoxDecoration(color: AppColors.surfaceVariant, shape: BoxShape.circle)),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(height: 14, color: AppColors.surfaceVariant),
-                        const SizedBox(height: 6),
-                        Container(height: 12, width: 180, color: AppColors.surfaceVariant),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+  String _formatViews(int views) {
+    if (views >= 1000000) return '${(views / 1000000).toStringAsFixed(1)}M';
+    if (views >= 1000) return '${(views / 1000).toStringAsFixed(1)}K';
+    return views.toString();
   }
 }

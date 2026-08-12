@@ -1,4 +1,3 @@
-﻿// lib/presentation/blocs/auth/auth_state.dart
 import '../../../data/models/user_model.dart';
 import 'package:flutter/foundation.dart';
 

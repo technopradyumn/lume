@@ -1,4 +1,3 @@
-// lib/data/models/playlist_model.dart
 import 'package:equatable/equatable.dart';
 import 'video_model.dart';
 

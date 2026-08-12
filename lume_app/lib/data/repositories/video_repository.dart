@@ -1,4 +1,3 @@
-// lib/data/repositories/video_repository.dart
 import 'package:dio/dio.dart';
 import '../../core/api/api_client.dart';
 import '../../core/constants/api_endpoints.dart';
@@ -28,7 +27,6 @@ class VideoRepository {
     if (data is List) {
       return data.map((v) => VideoModel.fromJson(v)).toList();
     }
-    // If paginated response
     final docs = data['docs'] as List<dynamic>? ?? [];
     return docs.map((v) => VideoModel.fromJson(v)).toList();
   }

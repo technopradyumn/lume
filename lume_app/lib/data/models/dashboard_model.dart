@@ -1,4 +1,3 @@
-// lib/data/models/dashboard_model.dart
 import 'package:equatable/equatable.dart';
 
 class DashboardStatsModel extends Equatable {
