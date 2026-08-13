@@ -6,8 +6,8 @@ import 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository _authRepo;
 
-  AuthCubit({required AuthRepository authRepository}) 
-      : _authRepo = authRepository, 
+  AuthCubit({required AuthRepository authRepository})
+      : _authRepo = authRepository,
         super(AuthInitial());
 
   Future<void> checkSession() async {

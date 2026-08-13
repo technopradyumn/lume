@@ -64,7 +64,7 @@ export const createVideo = async (videoData) => {
   fd.append('category', videoData.category || 'Coding');
   if (videoData.videoFile) fd.append('videoFile', videoData.videoFile);
   if (videoData.thumbnailFile) fd.append('thumbnail', videoData.thumbnailFile);
-  
+
   const res = await apiClient.post('/videos', fd, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
@@ -106,7 +106,7 @@ export const createTweet = async (content, imageFile) => {
   const fd = new FormData();
   fd.append('content', content);
   if (imageFile) fd.append('image', imageFile);
-  
+
   const res = await apiClient.post('/tweets', fd, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });

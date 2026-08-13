@@ -6,8 +6,8 @@ import 'dashboard_state.dart';
 class DashboardCubit extends Cubit<DashboardState> {
   final DashboardRepository _dashboardRepo;
 
-  DashboardCubit({required DashboardRepository dashboardRepository}) 
-      : _dashboardRepo = dashboardRepository, 
+  DashboardCubit({required DashboardRepository dashboardRepository})
+      : _dashboardRepo = dashboardRepository,
         super(DashboardInitial());
 
   Future<void> fetchDashboard() async {

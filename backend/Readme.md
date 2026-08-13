@@ -1,127 +1,126 @@
-<div align="center">
-  <img src="public/assets/lume-logo.png" alt="Lume Logo" width="160" />
-  <h1>Lume</h1>
-  <p><strong>A Modern Video Streaming & Social Interaction Backend</strong></p>
+# Lume Backend
 
-  [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-  [![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-  [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-  [![License](https://img.shields.io/badge/License-ISC-blue.svg?style=for-the-badge)](https://opensource.org/licenses/ISC)
-</div>
+The REST API powering Lume, a full-stack video platform for creators, viewers, and community interaction. It is built with Node.js, Express, MongoDB, Mongoose, JWT authentication, Multer uploads, and Supabase Storage.
 
----
+## Stack
 
-## 📽️ About Lume
+| Area | Technology | Purpose |
+| --- | --- | --- |
+| Runtime and API | Node.js, Express 5 | REST endpoints and middleware pipeline |
+| Database | MongoDB, Mongoose | Document storage, schemas, relationships, and queries |
+| Authentication | JWT, bcrypt, cookie-parser | Access authorization, refresh sessions, and secure passwords |
+| Uploads | Multer | Multipart upload handling for videos and images |
+| Media storage | Supabase Storage | Hosted video, thumbnail, avatar, and post-image URLs |
+| Middleware | CORS, Helmet, Morgan, custom auth middleware | Browser access, security headers, logging, and protected routes |
+| Reliability | `ApiError`, `ApiResponse`, `asyncHandler` | Consistent API errors and asynchronous controller handling |
 
-Lume is a robust, production-ready backend solution designed for video streaming platforms. It combines-industry standard practices with a scalable architecture, offering features range from secure user authentication to complex video processing and social interaction layers (Comments, Likes, Tweets, Playlists).
+## API modules
 
-Built with the **MERN** secondary stack (MongoDB, Express, Node), Lume focuses on performance, security, and developer experience.
+| Module | Base path | Responsibility |
+| --- | --- | --- |
+| Users and auth | `/api/v1/users` | Registration, login, sessions, profiles, avatars, history |
+| Videos | `/api/v1/videos` | Discovery, search, upload, playback metadata, and views |
+| Comments | `/api/v1/comments` | Video discussion |
+| Likes | `/api/v1/likes` | Video, comment, and community-post likes |
+| Community | `/api/v1/tweets` | Posts, replies, media, and reporting |
+| Subscriptions | `/api/v1/subscriptions` | Channel following |
+| Saved videos | `/api/v1/saved-videos` | Watch Later library |
+| Notifications | `/api/v1/notifications` | User notification state |
+| Dashboard | `/api/v1/dashboard` | Creator analytics and video management |
 
-## ✨ Key Features
-
-### 👤 User Management
-- **Security**: Password hashing with `Bcrypt` and state-of-the-art `JWT` authentication.
-- **Profiles**: Customizable avatars and cover images (integrated with Cloudinary).
-- **History**: Intelligent tracking of user "Watch History" and "Channel Profiles".
-
-### 📹 Video Infrastructure
-- **Streaming**: High-performance video uploads and management.
-- **Control**: Toggle publish status, intelligent search, and pagination.
-- **Engagement**: Fully featured Like and Comment systems on every video.
-
-### 🐦 Social Interaction
-- **Tweets**: Integrated platform for short-form social posts (Tweets).
-- **Playlists**: User-generated video collections with dynamic updates.
-- **Subscriptions**: Real-time channel subscription tracking and management.
-
-### 🛡️ Core Utilities
-- **Centralized Error Handling**: Custom `ApiError` and `ApiResponse` wrappers.
-- **Middleware**: Robust `auth`, `multer` (file handling), and `asyncHandler` logic.
-- **Security Headers**: `Helmet` integration for enhanced protection.
-
-## 🚀 Tech Stack
-
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: MongoDB (via Mongoose)
-- **File Management**: Cloudinary & Multer
-- **Validation/Security**: Bcrypt, JWT, Helmet
-- **Logging**: Morgan
-
-## 📂 Project Structure
+## Architecture
 
 ```text
 src/
-├── controllers/          # Business logic for every route
-├── db/                   # Database connection configuration
-├── middlewares/          # Authentication, file upload, and validation
-├── models/               # Mongoose schemas (User, Video, Tweet, etc.)
-├── routes/               # API endpoint definitions
-├── utils/                # Standardized helpers (Cloudinary, Async, Errors)
-├── app.js                # Express app configuration
-└── index.js              # Entry point & server listener
+|-- features/       # Routes, controllers, and models by business domain
+|-- shared/
+|   |-- middlewares/ # JWT auth and Multer upload handling
+|   `-- utils/       # Supabase, API responses/errors, async handling
+|-- db/              # MongoDB connection
+|-- app.js           # Express middleware and route registration
+`-- index.js         # Environment loading and server startup
 ```
 
-## 🛠️ Installation & Setup
+Request flow: **route -> auth/upload middleware -> controller -> Mongoose or Supabase -> standardized JSON response**.
 
-### 1. Prerequisite
-- Node.js (v16.x or higher)
-- MongoDB Atlas account or local installation
-- Cloudinary account (for media storage)
+## Run locally
 
-### 2. Clone and Install
+### Prerequisites
+
+- Node.js 18 or later
+- npm 9 or later
+- MongoDB Atlas or local MongoDB
+- A Supabase project with a storage bucket for uploads
+
+### Installation
+
 ```bash
-git clone <your-repo-url>
-cd Lume
+git clone https://github.com/technopradyumn/lume_backend.git
+cd lume_backend
 npm install
 ```
 
-### 3. Environment Configuration
-Create a `.env` file in the root directory and populate it with the following (check `.env.sample` for reference):
+Create `.env` from the sample file.
+
+**Windows PowerShell**
+
+```powershell
+Copy-Item .env.sample .env
+```
+
+**macOS / Linux**
+
+```bash
+cp .env.sample .env
+```
+
+Set valid values in `.env`:
 
 ```env
 PORT=8000
-MONGODB_URI=mongodb+srv://your_uri
-ACCESS_TOKEN_SECRET=your_secret
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>
+CORS_ORIGIN=<frontend-origin>
+ACCESS_TOKEN_SECRET=<long-random-secret>
 ACCESS_TOKEN_EXPIRY=1d
-REFRESH_TOKEN_SECRET=your_secret
+REFRESH_TOKEN_SECRET=<different-long-random-secret>
 REFRESH_TOKEN_EXPIRY=10d
-
-CLOUDINARY_CLOUD_NAME=your_name
-CLOUDINARY_API_KEY=your_key
-CLOUDINARY_API_SECRET=your_secret
+SUPABASE_URL=https://<project-ref>.supabase.co
+SUPABASE_ANON_KEY=<supabase-anon-key>
 ```
 
-### 4. Run the Server
+Start the API:
+
 ```bash
 npm run dev
 ```
 
-## 📡 API Overview (Summary)
+### Render deployment
 
-| Endpoint | Method | Description |
-| :--- | :--- | :--- |
-| `/api/v1/users/register` | `POST` | Register a new user with files |
-| `/api/v1/users/login` | `POST` | Authenticate and get JWT |
-| `/api/v1/videos` | `GET/POST` | Fetch/Upload videos |
-| `/api/v1/tweets` | `POST/GET` | Social interaction module |
-| `/api/v1/subscriptions` | `GET` | Channel management |
+For Render, create a **Web Service** and use the following commands:
 
-## 🤝 Contributing
+```text
+Build Command: npm install
+Start Command: npm start
+```
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+`npm start` runs Node directly and does not depend on Nodemon, which is a local development dependency.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## Media upload behavior
 
-## ⚖️ License
+Multer receives uploaded files before controllers process metadata. When Supabase is configured, the API uploads video and image assets to Supabase Storage and persists their URLs in MongoDB. In local development without configured Supabase credentials, temporary files are served from the backend public directory as a fallback.
 
-Distributed under the **ISC License**. See `LICENSE` for more information.
+## Security notes
 
----
-<div align="center">
-  Developed with ❤️ by <a href="https://github.com/technopradyumn">Pradyumn</a>
-</div>
+- Do not commit `.env`; it is excluded by `.gitignore`.
+- Use long, unique JWT secrets in every environment.
+- Restrict `CORS_ORIGIN` to your deployed frontend domain in production.
+- Serve production traffic over HTTPS.
+
+## Related repositories
+
+- [Lume frontend](https://github.com/technopradyumn/lume_frontend)
+- [Lume Flutter app](https://github.com/technopradyumn/lume_app)
+
+## License
+
+ISC
