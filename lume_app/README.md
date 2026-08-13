@@ -59,11 +59,13 @@ Choose an Android emulator, iOS simulator, or connected device when prompted.
 
 ## API configuration
 
-The local API base URL is defined in `lib/core/constants/app_constants.dart`.
+The deployed API base URL is defined in `lib/core/constants/app_constants.dart`:
 
-- Android emulators use the host-machine alias `10.0.2.2`.
-- iOS simulators and local desktop runs use the loopback address.
-- For a physical device or production deployment, replace the local URL with your reachable HTTPS backend URL.
+```text
+https://lume-backend-cggh.onrender.com/api/v1
+```
+
+For local backend development, temporarily replace this value with the address reachable from your emulator or device.
 
 ## Useful commands
 
