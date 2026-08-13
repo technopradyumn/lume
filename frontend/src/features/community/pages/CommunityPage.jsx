@@ -38,18 +38,24 @@ export function CommunityPage() {
   };
 
   const handleLike = async (tweetId) => {
-    const result = await toggleTweetLike(tweetId);
+    const previous = tweets;
     setTweets((current) =>
       current.map((t) =>
         t._id === tweetId
           ? {
             ...t,
-              isLiked: result?.isLiked ?? !t.isLiked,
+              isLiked: !t.isLiked,
               likesCount: Math.max(0, (t.likesCount || 0) + (t.isLiked ? -1 : 1)),
             }
           : t,
       ),
     );
+    try {
+      await toggleTweetLike(tweetId);
+    } catch (error) {
+      setTweets(previous);
+      console.error("Failed to like post:", error);
+    }
   };
 
   const handleDelete = async (tweetId) => {
