@@ -9,17 +9,11 @@ import { formatViews } from "../../../shared/utils/formatters";
 import { UploadModal } from "../../videos/components/UploadModal";
 import { VideoGrid } from "../../videos/components/VideoGrid";
 
-const FALLBACK_STATS = {
-  totalViews: 128400,
-  totalSubscribers: 8420,
-  totalVideos: 36,
-  totalLikes: 19200,
-};
-
 export function DashboardPage() {
-  const [stats, setStats] = useState(FALLBACK_STATS);
+  const [stats, setStats] = useState(null);
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [statsUnavailable, setStatsUnavailable] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
 
   useEffect(() => {
@@ -33,7 +27,8 @@ export function DashboardPage() {
         getChannelStats().catch(() => null),
         getChannelVideos().catch(() => []),
       ]);
-      if (nextStats) setStats(nextStats);
+      setStats(nextStats || null);
+      setStatsUnavailable(!nextStats);
       setVideos(nextVideos || []);
     } finally {
       setIsLoading(false);
@@ -44,8 +39,7 @@ export function DashboardPage() {
     const newVideo = await createVideo(videoData);
     if (newVideo) {
       setVideos((current) => [newVideo, ...current]);
-      const nextStats = await getChannelStats().catch(() => null);
-      if (nextStats) setStats(nextStats);
+      setStats((current) => current ? { ...current, totalVideos: (current.totalVideos || 0) + 1 } : current);
     }
   };
 
@@ -53,25 +47,25 @@ export function DashboardPage() {
     {
       icon: Eye,
       label: "Total Views",
-      value: stats.totalViews,
+      value: stats?.totalViews,
       color: "var(--accent-glow)",
     },
     {
       icon: Users,
       label: "Subscribers",
-      value: stats.totalSubscribers,
+      value: stats?.totalSubscribers,
       color: "var(--success)",
     },
     {
       icon: Film,
       label: "Videos",
-      value: stats.totalVideos,
+      value: stats?.totalVideos,
       color: "var(--info)",
     },
     {
       icon: Heart,
       label: "Total Likes",
-      value: stats.totalLikes,
+      value: stats?.totalLikes,
       color: "var(--danger)",
     },
   ];
@@ -98,7 +92,13 @@ export function DashboardPage() {
         className="dashboard-overview__stats"
         aria-label="Channel performance"
       >
-        {statCards.map((stat, index) => (
+        {isLoading || statsUnavailable ? Array.from({ length: 4 }).map((_, index) => (
+          <div key={index} className="stat-card" aria-label="Loading channel metric">
+            <div className="shimmer" style={{ width: 42, height: 42, borderRadius: "var(--radius-lg)" }} />
+            <div className="shimmer" style={{ width: 84, height: 28, marginTop: 14 }} />
+            <div className="shimmer" style={{ width: 108, height: 14, marginTop: 8 }} />
+          </div>
+        )) : statCards.map((stat, index) => (
           <div
             key={stat.label}
             className={`stat-card animate-fade-in-up stagger-${index + 1}`}
