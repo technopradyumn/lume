@@ -25,7 +25,9 @@ const cached = async (key, request) => {
 export const clearApiCache = () => responseCache.clear();
 const UPLOAD_API_BASE_URL =
   import.meta.env.VITE_UPLOAD_API_BASE_URL ||
-  "https://lume-backend-cggh.onrender.com/api/v1";
+  (import.meta.env.DEV
+    ? API_BASE_URL
+    : "https://lume-backend-cggh.onrender.com/api/v1");
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,

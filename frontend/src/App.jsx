@@ -111,15 +111,17 @@ function DemoHome() {
         </button>
         <span>Live demo</span>
         <p>You can browse the Home screen. Sign in to interact with Lume.</p>
+        <button
+          type="button"
+          className="btn btn--primary btn--sm demo-home__join"
+          onClick={() => setShowPrompt(true)}
+        >
+          Sign in
+        </button>
       </div>
       <main className="demo-home__content">
         <HomePage />
       </main>
-      <button
-        className="demo-home__interceptor"
-        aria-label="Sign in required"
-        onClick={() => setShowPrompt(true)}
-      />
       {showPrompt && (
         <div className="modal-overlay" onClick={() => setShowPrompt(false)}>
           <div
