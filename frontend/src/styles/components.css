@@ -106,6 +106,7 @@
 }
 
 .card__thumbnail {
+  display: block;
   position: relative;
   overflow: hidden;
   background: var(--bg-elevated);
@@ -126,6 +127,16 @@
 .video-card__menu-trigger {
   border: 1px solid rgba(255, 255, 255, 0.28);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.32);
+}
+
+.video-card__profile-link,
+.tweet-card__profile-link {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: inherit;
+  text-decoration: none;
 }
 
 .card__thumbnail img {
@@ -895,6 +906,18 @@
   border-bottom: 1px solid var(--border-default);
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
+}
+
+.dropdown.anchored-popup {
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  min-width: 0;
+  max-width: calc(100vw - 24px);
+  margin: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .demo-home__back {
   flex-shrink: 0;
@@ -2294,6 +2317,11 @@
   }
 }
 
+.player-info__subscribe {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
 @media (max-width: 420px) {
   .search-person-card__open {
     display: none;
@@ -2386,6 +2414,13 @@
   align-items: center;
   gap: var(--space-4);
   margin-top: var(--space-2);
+}
+
+.comments__show-more {
+  display: flex;
+  width: 100%;
+  margin-top: var(--space-4);
+  justify-content: center;
 }
 
 .stat-card,
