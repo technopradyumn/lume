@@ -52,6 +52,16 @@ export function VideoCard({ video, index = 0 }) {
     };
   }, [user?._id, video._id]);
 
+  useEffect(() => {
+    const closeOnViewportChange = () => actionMenu.close();
+    window.addEventListener("resize", closeOnViewportChange);
+    window.addEventListener("orientationchange", closeOnViewportChange);
+    return () => {
+      window.removeEventListener("resize", closeOnViewportChange);
+      window.removeEventListener("orientationchange", closeOnViewportChange);
+    };
+  }, [actionMenu]);
+
   const handleSave = async () => {
     if (!user?._id) {
       showToast("Please sign in to save videos.");
@@ -92,7 +102,7 @@ export function VideoCard({ video, index = 0 }) {
       </Link>
       <div className="card__body">
         <div style={{ display: "flex", gap: "var(--space-3)" }}>
-          <UserAvatar user={video.owner} size="sm" noLink />
+          <UserAvatar user={video.owner} size="sm" />
           <div style={{ flex: 1, minWidth: 0 }}>
             <Link to={videoPath} className="card__title text-clamp-2">
               {video.title}
@@ -115,6 +125,7 @@ export function VideoCard({ video, index = 0 }) {
             </div>
           </div>
           <div
+            className="video-card__menu-anchor"
             style={{
               position: "absolute",
               top: "var(--space-2)",
@@ -123,7 +134,8 @@ export function VideoCard({ video, index = 0 }) {
             }}
           >
             <button
-              className="btn btn--icon-sm"
+              type="button"
+              className="btn btn--icon-sm video-card__menu-trigger"
               aria-label={`More actions for ${video.title}`}
               style={{
                 background: "rgba(15, 23, 42, 0.76)",
@@ -132,15 +144,22 @@ export function VideoCard({ video, index = 0 }) {
               }}
               onClick={(event) => {
                 const rect = event.currentTarget.getBoundingClientRect();
-                const menuHeight = 152;
+                const menuHeight = 144;
+                const menuWidth = Math.min(248, window.innerWidth - 24);
                 const gap = 8;
                 const edge = 12;
                 const opensBelow = rect.bottom + gap + menuHeight <= window.innerHeight - edge;
+                const preferredTop = opensBelow ? rect.bottom + gap : rect.top - menuHeight - gap;
                 setActionMenuPosition({
-                  right: Math.max(edge, window.innerWidth - rect.right),
-                  top: opensBelow
-                    ? rect.bottom + gap
-                    : Math.max(edge, rect.top - menuHeight - gap),
+                  left: Math.min(
+                    window.innerWidth - menuWidth - edge,
+                    Math.max(edge, rect.right - menuWidth),
+                  ),
+                  top: Math.min(
+                    window.innerHeight - menuHeight - edge,
+                    Math.max(edge, preferredTop),
+                  ),
+                  width: menuWidth,
                 });
                 actionMenu.toggle();
               }}
