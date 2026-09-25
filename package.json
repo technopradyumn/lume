@@ -21,6 +21,8 @@
     "build": "bun run --cwd backend build && bun run --cwd frontend build",
     "typecheck:backend": "bun run --cwd backend typecheck",
     "typecheck:frontend": "bun run --cwd frontend typecheck",
-    "typecheck": "bun run --cwd backend typecheck && bun run --cwd frontend typecheck"
+    "typecheck": "bun run --cwd backend typecheck && bun run --cwd frontend typecheck",
+    "push": "bun scripts/sync-and-push.ts",
+    "sync": "bun scripts/sync-and-push.ts"
   }
 }
