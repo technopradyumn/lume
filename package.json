@@ -1,15 +1,26 @@
 {
   "name": "lume-monorepo",
-  "version": "1.0.0",
-  "description": "Lume Video Streaming & Social Platform - Full Stack MERN & Flutter Mobile App",
-  "type": "module",
-  "scripts": {
-    "setup": "npm --prefix backend install && npm --prefix frontend install",
-    "dev": "npx concurrently \"npm run backend\" \"npm run frontend\"",
-    "backend": "npm --prefix backend run dev",
-    "frontend": "npm --prefix frontend run dev"
+  "version": "2.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "overrides": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3"
   },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+  "scripts": {
+    "dev:backend": "bun run --cwd backend dev",
+    "dev:frontend": "bun run --cwd frontend dev",
+    "dev": "bun run --cwd backend dev & bun run --cwd frontend dev",
+    "build:backend": "bun run --cwd backend build",
+    "build:frontend": "bun run --cwd frontend build",
+    "build": "bun run --cwd backend build && bun run --cwd frontend build",
+    "typecheck:backend": "bun run --cwd backend typecheck",
+    "typecheck:frontend": "bun run --cwd frontend typecheck",
+    "typecheck": "bun run --cwd backend typecheck && bun run --cwd frontend typecheck"
   }
 }
